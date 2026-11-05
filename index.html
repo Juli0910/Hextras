@@ -64,6 +64,234 @@ body.auth-locked header,body.auth-locked nav,body.auth-locked main{display:none!
 .import-period-combo .auto-period{display:inline-flex;flex-direction:row;align-items:center;gap:6px;font-size:12px;white-space:nowrap;color:#214468}
 .import-period-combo input[type=month]{min-width:155px;padding:8px 10px;border:1px solid #cbd9e9;border-radius:8px;background:white;color:#163559}
 .import-period-combo input[type=month]:disabled{background:#f1f5fa;color:#8b9bb0}
+.mc-difference{background:#eaf2ff;border-color:#cbdff8;color:#1c4b82}.mc-difference strong{color:#163e71;font-size:12px}
+
+/* Cuadro mensual de lectura ejecutiva */
+.ger-kpis{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px;margin:4px 0 17px}
+.ger-kpi{border:1px solid #e0e8f3;border-radius:10px;background:#f7faff;padding:10px 11px;display:grid;gap:5px;min-width:0}
+.ger-kpi span{font-size:10px;color:#607593;line-height:1.35}
+.ger-kpi strong{font-size:17px;color:#163a68;white-space:nowrap;font-variant-numeric:tabular-nums}
+.ger-table{min-width:0;border:1px solid #e4ebf4;border-radius:10px;overflow:hidden}
+.ger-table-head,.ger-table-row{display:grid;grid-template-columns:1.02fr .96fr .96fr .93fr 1.23fr;gap:7px;align-items:center;padding:10px 10px}
+.ger-table-head{background:#173b69;color:white;font-size:10px;font-weight:750;position:sticky;top:0;z-index:2}
+.ger-table-head span:not(:first-child){text-align:right}
+.ger-table-row{font-size:11px;border-top:1px solid #edf1f6;min-height:43px;transition:background .12s}
+.ger-table-row:nth-child(2n){background:#f8fbff}
+.ger-table-row:hover{background:#edf5ff}
+.ger-year{padding:7px 10px;background:#eaf1fb;border-top:1px solid #d8e5f4;color:#1e4f84;font-size:11px;letter-spacing:.3px}
+.ger-month{font-weight:700;color:#254260;text-transform:capitalize}
+.ger-num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap;color:#31445c;font-weight:650}
+.ger-num.solic{color:#1961ab}.ger-num.over{color:#a65a20}
+.ger-missing{color:#8796aa;font-style:italic;font-weight:400}
+.ger-progress-cell{display:flex;align-items:center;gap:6px;justify-content:flex-end;min-width:0}
+.ger-percent{font-variant-numeric:tabular-nums;color:#234765;font-weight:800;white-space:nowrap;font-size:10px}
+.ger-percent.over{color:#a65a20}.ger-percent.pending{color:#8796aa;font-size:9px}
+.ger-progress{width:45%;min-width:25px;height:6px;background:#e5edf7;border-radius:99px;overflow:hidden}
+.ger-progress-fill{height:100%;background:#2e75bd;border-radius:99px}
+.ger-progress-fill.over{background:#e29744}
+.ger-progress-fill.high{background:#29806c}
+.ger-note{font-size:10px;color:#6b7f97;line-height:1.5;margin:10px 0 0}
+@media(max-width:1100px){.ger-kpi strong{font-size:14px}.ger-table-head,.ger-table-row{gap:4px;padding:9px 6px;font-size:10px}.ger-progress{width:28%}}
+@media(max-width:600px){.ger-kpis{grid-template-columns:1fr}.ger-table{overflow-x:auto}.ger-table-head,.ger-table-row{min-width:555px}.ger-progress{width:45%}}
+@media print{.bar-area{max-height:none!important;overflow:visible!important}.ger-table-head{position:static}.ger-table-row{break-inside:avoid}}
+
+/* Presentación gerencial alternativa: comparativo mensual agrupado */
+#bars.monthly-executive{max-height:560px;overflow:auto;padding:0 5px 8px 0}
+.monthly-visual{display:grid;gap:16px}
+.mv-header{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;padding:5px 0 1px}
+.mv-legend{display:flex;gap:15px;flex-wrap:wrap;font-size:12px;color:#4f6480}
+.mv-legend span{display:inline-flex;align-items:center;gap:6px}
+.mv-legend i{width:11px;height:11px;border-radius:3px;display:inline-block}
+.mv-caption{font-size:11px;color:#647995}
+.mv-year-block{border:1px solid #e0e9f5;border-radius:14px;background:linear-gradient(180deg,#fff,#fbfdff);overflow:hidden}
+.mv-year-head{display:flex;justify-content:space-between;align-items:center;background:#eff5fc;padding:10px 15px;gap:8px}
+.mv-year-title{font-size:14px;color:#173a69;font-weight:900}
+.mv-year-detail{font-size:11px;color:#5e7591}
+.mv-chart-scroll{overflow-x:auto;overflow-y:hidden;padding:8px 12px 4px}
+.mv-chart-svg{height:290px;display:block;max-width:none}
+.mv-summary{display:flex;gap:8px;flex-wrap:wrap;padding:8px 14px 12px}
+.mv-summary span{font-size:11px;border:1px solid #dce8f5;border-radius:8px;background:#fff;padding:7px 9px;color:#455f7e}
+.mv-summary strong{color:#153861}
+.mv-note{font-size:11px;color:#697d95;line-height:1.5;margin:0 4px 5px}
+@media print{#bars.monthly-executive{max-height:none;overflow:visible}.mv-chart-scroll{overflow:visible}.mv-chart-svg{width:100%!important;height:auto!important}.mv-year-block{break-inside:avoid}}
+
+/* SIGHE V57 | Cuadro de mando mensual para presentación gerencial */
+#bars:has(.em-board){max-height:none;overflow:visible}
+.em-board{display:grid;gap:18px;color:#193453}
+.em-year{border:1px solid #dde7f3;border-radius:15px;background:#fff;overflow:hidden;box-shadow:0 5px 15px rgba(24,54,96,.045)}
+.em-head{display:flex;justify-content:space-between;gap:12px;align-items:center;padding:16px 19px;background:#f5f8fc;border-bottom:1px solid #e7edf5}
+.em-eyebrow{font-size:10px;letter-spacing:1.1px;font-weight:850;color:#64819e}
+.em-head h3{margin:2px 0 0;font-size:23px;line-height:1.2;color:#12345d}
+.em-coverage{font-size:11px;border:1px solid #d8e5f2;border-radius:50px;padding:7px 10px;color:#52718d;background:white;text-align:center}
+.em-kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;padding:16px 17px 12px}
+.em-card{padding:14px 13px 12px;border:1px solid #dfe9f4;border-top:3px solid #7d98b5;border-radius:11px;background:#fff;min-width:0}
+.em-card.em-blue{border-top-color:#2878c6}.em-card.em-orange{border-top-color:#df913d}.em-card.em-neutral{border-top-color:#5a7593}.em-card.em-strong{border-top-color:#0e6c69;background:#f7fbfb}
+.em-card-label{color:#576f8a;font-size:11px;font-weight:650}
+.em-card-value{font-size:clamp(17px,1.5vw,23px);font-weight:900;color:#122e51;white-space:nowrap;margin:8px 0 4px;font-variant-numeric:tabular-nums}
+.em-card-sub{font-size:10px;color:#73869d}
+.em-section-title{display:flex;justify-content:space-between;flex-wrap:wrap;gap:7px;padding:4px 19px 11px;align-items:center}
+.em-section-title strong{font-size:13px;color:#19395f}.em-section-title span{font-size:11px;color:#7890a8}
+.em-months{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:7px;padding:0 17px 10px}
+.em-month{min-width:0;border:1px solid #dfe7f0;border-radius:9px;padding:9px 5px 9px;background:#fff;text-align:center;border-top:3px solid #cad5e2}
+.em-month-name{text-transform:uppercase;font-weight:850;font-size:10px;letter-spacing:.25px;color:#526d8a}
+.em-month-pct{font-weight:900;font-size:clamp(11px,1.05vw,16px);margin:11px 0 3px;font-variant-numeric:tabular-nums;color:#173557}
+.em-month-state{font-size:9px;min-height:20px;color:#7f91a5}
+.em-minibar{height:4px;background:#e8eef6;border-radius:30px;margin-top:8px;overflow:hidden}.em-minibar span{display:block;height:100%;background:#b8c9dc;border-radius:30px}
+.em-good{border-top-color:#238375;background:#f8fcfb}.em-good .em-minibar span{background:#238375}
+.em-low{border-top-color:#ca9341;background:#fffcf8}.em-low .em-minibar span{background:#ca9341}
+.em-over{border-top-color:#b66836;background:#fffaf7}.em-over .em-minibar span{background:#b66836}
+.em-pending,.em-absent{background:#f8fafc;color:#8a9bae}.em-pending .em-month-pct,.em-absent .em-month-pct{color:#8a9bae}
+.em-legend{display:flex;flex-wrap:wrap;gap:14px;padding:7px 19px 13px;font-size:10px;color:#687e96}
+.em-legend span{display:inline-flex;align-items:center;gap:5px}.em-lg{height:8px;width:8px;border-radius:2px;background:#d9e3ee;display:inline-block}.em-lg.good{background:#238375}.em-lg.low{background:#ca9341}.em-lg.over{background:#b66836}.em-lg.pending{background:#b4c0ce}
+.em-details{border-top:1px solid #e5edf5}.em-details summary{padding:12px 19px;cursor:pointer;color:#25547f;font-size:12px;font-weight:800;background:#f9fbfe}.em-details summary span{font-weight:400;color:#6b839b;margin-left:10px}.em-table-scroll{overflow-x:auto;padding:0 12px 14px}.em-table{width:100%;border-collapse:collapse;font-size:12px}.em-table th{text-align:right;background:#edf3fa;padding:10px;color:#294b70}.em-table td{text-align:right;border-bottom:1px solid #ecf1f7;padding:9px;color:#243d5d}.em-table td:first-child,.em-table th:first-child{text-align:left}.em-table tr:nth-child(even){background:#f8fbff}
+@media(max-width:1100px){.em-months{grid-template-columns:repeat(6,minmax(0,1fr))}.em-kpis{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:530px){.em-head{align-items:flex-start;flex-direction:column}.em-months{grid-template-columns:repeat(4,minmax(0,1fr))}.em-kpis{grid-template-columns:1fr 1fr}.em-card-value{font-size:17px}}
+@media print{.em-details{display:block}.em-details summary{display:none}.em-details:not([open]) .em-table-scroll{display:block}.em-year{break-inside:avoid}.em-months{grid-template-columns:repeat(12,minmax(0,1fr))}.em-kpis{grid-template-columns:repeat(4,minmax(0,1fr))}}
+
+/* SIGHE V58 | visual gerencial de tendencia mensual */
+.tl-dashboard{display:grid;gap:20px}
+.tl-year{padding:16px 18px;border-radius:16px;border:1px solid #dbe5f1;background:#fff}
+.tl-heading{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;margin-bottom:16px}
+.tl-heading h3{margin:2px 0 0;font-size:22px;line-height:1.15;color:#152e50}
+.tl-eyebrow{font-size:10px;font-weight:800;letter-spacing:1.2px;color:#477399}
+.tl-legend{display:flex;align-items:center;gap:18px;flex-wrap:wrap;font-size:12px;color:#4a6384}
+.tl-legend span{display:inline-flex;gap:7px;align-items:center}
+.tl-dot{width:11px;height:11px;border-radius:50%;display:inline-block}
+.tl-dot.blue{background:#2673bc}.tl-dot.orange{background:#e0913d}
+.tl-stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:9px;margin-bottom:14px}
+.tl-stat{background:#f5f8fc;border:1px solid #e3ebf5;padding:11px 12px;border-radius:10px;min-width:0}
+.tl-stat-label{font-size:11px;color:#617692;font-weight:650}
+.tl-stat strong{display:block;font-size:clamp(14px,1.35vw,20px);margin:5px 0;color:#17375e;white-space:nowrap}
+.tl-stat-detail{font-size:10px;color:#8290a4}
+.tl-chart{background:linear-gradient(#fbfdff,#f8fbff);border:1px solid #e9f0f7;border-radius:12px;padding:12px 8px 4px;overflow-x:auto}
+.tl-svg{width:100%;min-width:520px;display:block}
+.tl-axis,.tl-month{font-size:12px;fill:#6b7d94;font-family:Segoe UI,Arial,sans-serif}
+.tl-month{font-size:14px;font-weight:650}
+.tl-caption{font-size:11px;color:#72829a;margin-top:10px}
+.tl-details{margin-top:12px;border-top:1px solid #e9eff7;padding-top:10px}
+.tl-details summary{cursor:pointer;color:#235787;font-size:12px;font-weight:750}
+.tl-table-scroll{overflow-x:auto;margin-top:9px}
+.tl-table{width:100%;border-collapse:collapse;font-size:12px}
+.tl-table th{background:#1a3c67;color:white;text-align:right;padding:10px}
+.tl-table th:first-child,.tl-table td:first-child{text-align:left}
+.tl-table td{padding:9px 10px;text-align:right;border-bottom:1px solid #ecf0f6}
+.tl-table tbody tr:nth-child(even){background:#f5f8fc}
+@media(max-width:900px){.tl-stats{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:520px){.tl-year{padding:12px}.tl-stat strong{white-space:normal}}
+@media print{.tl-chart{overflow:visible}.tl-svg{min-width:0}.tl-year{break-inside:avoid}}
+
+.tl-diff-label{font-size:11px;font-weight:800;font-family:Segoe UI,Arial,sans-serif}
+.tl-diff-missing{font-size:11px;fill:#97a4b6;font-style:italic;font-family:Segoe UI,Arial,sans-serif}
+.tl-diff-legend{display:flex;gap:14px;flex-wrap:wrap;align-items:center;margin:10px 0 5px;font-size:12px;color:#546b85}
+.tl-diff-legend b{font-weight:800;color:#193d64}
+.tl-bar-value{font:700 10px Segoe UI,Arial,sans-serif;paint-order:stroke;stroke:#ffffff;stroke-width:3px;stroke-linejoin:round;pointer-events:none}
+
+.tl-year-selector{display:flex;align-items:center;gap:9px;flex-wrap:wrap;padding:5px 2px 15px;position:sticky;top:0;background:#fff;z-index:4;border-bottom:1px solid #e6edf6;margin-bottom:2px}
+.tl-year-selector-label{font-size:12px;font-weight:700;color:#496785;margin-right:4px}
+.tl-year-tab{border:1px solid #cbd9ea;background:#f7faff;color:#174570;border-radius:8px;min-width:72px;padding:8px 15px;font-size:13px;font-weight:800;cursor:pointer}
+.tl-year-tab:hover{background:#e8f2ff}
+.tl-year-tab.selected{background:#153e70;color:#fff;border-color:#153e70}
+.tl-year-head{font-size:19px;letter-spacing:-.3px;color:#14385e;margin:0}
+.tl-year .tl-heading .tl-eyebrow{display:none}
+
+#bars.monthly-executive{max-height:none;overflow:visible;padding:0 4px 8px}
+.tl-unified{padding:15px 16px}
+.tl-unified-chart{overflow-x:auto;overflow-y:hidden;max-width:100%;scrollbar-width:thin}
+.tl-unified-chart .tl-unified-svg{display:block}
+.tl-unified-note{display:block;color:#68809a;font-size:11px;margin-top:5px}
+.tl-unified-totals{display:flex;gap:9px;flex-wrap:wrap;padding:12px 0 2px}
+.tl-unified-totals span{background:#f3f7fc;border:1px solid #e0e8f3;border-radius:8px;padding:8px 11px;color:#4d6886;font-size:11px}
+.tl-unified-totals b{color:#123961}
+@media print{.tl-unified-chart{overflow:visible}.tl-unified-chart .tl-unified-svg{max-width:100%!important;min-width:0!important;width:100%!important}}
+
+.occ-embedded{margin-top:16px;padding:15px 13px 10px;border:1px solid #dce7f4;background:#fbfdff;border-radius:12px}
+.occ-embedded h2{font-size:15px;margin:0 0 6px}
+.occ-embedded #occNote{font-size:11px;line-height:1.45;margin:0 0 10px}
+.occ-embedded #occBars{max-height:285px;overflow-y:auto;overflow-x:auto;scrollbar-width:thin}
+.occ-embedded .occ-chart-head,.occ-embedded .occ-chart-row{grid-template-columns:minmax(100px,165px) minmax(160px,1fr) 116px;gap:7px}
+.occ-embedded .occ-chart-row{padding:9px 0}
+.monthly-detail-panel{padding-top:18px}
+.monthly-detail-mount{display:grid;gap:12px;min-height:90px}
+.monthly-detail-mount .tl-diff-legend{margin:0;display:flex;flex-wrap:wrap;gap:10px;align-items:center;padding:10px 12px;background:#f7faff;border:1px solid #e3eaf4;border-radius:10px}
+.monthly-detail-mount .tl-unified-totals{padding:0}
+.monthly-detail-mount .tl-details{margin:0}
+@media print{.occ-embedded #occBars{max-height:none;overflow:visible}}
+
+.monthly-full-panel{width:100%;margin-top:14px}
+.monthly-full-panel #bars{max-height:none;overflow:visible;min-height:300px}
+.monthly-full-panel .tl-unified-chart{overflow-x:auto;max-width:100%;scrollbar-width:thin}
+.monthly-full-panel .tl-unified{max-width:none}
+#occBars{max-height:480px;overflow-y:auto;overflow-x:hidden}
+@media print{.monthly-full-panel #bars,#occBars{max-height:none;overflow:visible}}
+
+/* V73: acciones en franja superior sin modificar navegación ni control de sesión */
+header{gap:20px;min-height:70px;flex-wrap:wrap}
+.header-actions{display:flex;align-items:center;justify-content:flex-end;gap:16px;margin-left:auto;min-width:0;flex-wrap:wrap}
+header #dashboardTop{display:flex;align-items:center;justify-content:center;margin:0!important;padding:0;gap:0;flex:0 0 auto}
+header #dashboardTop.hidden{display:none!important}
+header #dashboardTop .title-placeholder{display:none!important}
+header #dashboardTop .stack{display:flex;align-items:center}
+header #dashboardTop button.secondary{padding:9px 14px;background:#e9f1fa;color:#174372;font-size:12px;white-space:nowrap}
+header #sessionTools{display:none;align-items:center;gap:10px;margin:0;white-space:nowrap}
+header #sessionTools button{background:#e7f1ff;color:#173a69;padding:9px 13px}
+header #counter{flex:0 0 auto;white-space:nowrap}
+nav{justify-content:flex-start}
+@media(max-width:900px){header{padding:12px 16px}.header-actions{gap:9px}nav{padding:8px 12px}header #dashboardTop button.secondary,header #sessionTools button{padding:8px 10px}}
+@media print{header #dashboardTop,header #sessionTools{display:none!important}}
+
+/* Tarjetas ejecutivas SIGHE: diseño adaptado a la referencia; datos siguen vinculados al estado. */
+#modCards.mod-cards{gap:16px;margin:4px 0 18px!important}
+#modCards .mod-card{--accent:#1468cc;--accent2:#0d4cae;--ring:#9accff;position:relative;display:flex;flex-direction:column;overflow:hidden;min-height:203px;padding:0 0 18px;border:1px solid #a9ccef;border-radius:24px;background:linear-gradient(145deg,#f4faff 0%,#fff 57%,#f6faff 100%);box-shadow:0 8px 19px #1a55902b,0 2px 3px #10416a16;isolation:isolate}
+#modCards .mod-card::before{content:'';position:absolute;left:-35px;top:66px;width:135px;height:135px;border:13px solid var(--ring);border-right-color:transparent;border-bottom-color:transparent;border-radius:50%;opacity:.52;transform:rotate(-12deg);z-index:0;pointer-events:none}
+#modCards .mod-card .executive-header{position:relative;z-index:1;min-height:70px;display:flex;justify-content:space-between;align-items:center;gap:12px;background:linear-gradient(110deg,var(--accent) 0%,var(--accent2) 100%);color:#fff;padding:13px 23px;border-radius:22px 22px 0 0;box-shadow:inset 0 -2px 0 #ffffff18}
+#modCards .mod-card .executive-header .k{color:#fff;font-weight:800;font-size:clamp(15px,1.5vw,24px);line-height:1.12;letter-spacing:-.5px}
+#modCards .mod-card .executive-icon{display:flex;align-items:center;justify-content:center;flex-shrink:0;border-left:2px solid #ffffffa0;padding-left:13px;min-height:42px}
+#modCards .mod-card .executive-icon svg{width:42px;height:42px;stroke:#fff;stroke-width:2;fill:none;stroke-linecap:round;stroke-linejoin:round}
+#modCards .mod-card .value{position:relative;z-index:1;font-size:clamp(22px,2.3vw,37px);font-weight:850;color:#0c284e;letter-spacing:-1px;line-height:1.12;margin:26px 20px 8px;text-align:center;white-space:nowrap;font-variant-numeric:tabular-nums}
+#modCards .mod-card .desc{position:relative;z-index:1;font-size:clamp(10px,.9vw,15px);color:#355779;text-align:center;margin:0 14px 19px;line-height:1.35}
+#modCards .mod-card .executive-progress{height:10px;border-radius:99px;background:#dde5f0;margin:auto 25px 0;overflow:hidden;position:relative;z-index:1}
+#modCards .mod-card .executive-progress-fill{height:100%;background:linear-gradient(90deg,var(--accent),var(--accent2));border-radius:99px;transition:width .25s ease}
+#modCards .mod-card.kpi-he-request{--accent:#1280e1;--accent2:#0849b0;--ring:#8fc8fa}
+#modCards .mod-card.kpi-he-exec{--accent:#08b5ce;--accent2:#007da6;--ring:#87e4ef}
+#modCards .mod-card.kpi-rpct-request{--accent:#1475c9;--accent2:#06479c;--ring:#90c4f8}
+#modCards .mod-card.kpi-rpct-exec{--accent:#ff9c28;--accent2:#f05c1d;--ring:#ffd59c}
+@media(max-width:1100px){#modCards.mod-cards{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:650px){#modCards.mod-cards{grid-template-columns:1fr!important}#modCards .mod-card{min-height:175px}#modCards .mod-card .value{font-size:31px;margin-top:17px}#modCards .mod-card .executive-header{min-height:58px}#modCards .mod-card .executive-icon svg{width:32px;height:32px}}
+@media print{#modCards .mod-card{-webkit-print-color-adjust:exact;print-color-adjust:exact;box-shadow:none}}
+
+/* V76 · menú integrado en la cabecera institucional */
+header{display:flex!important;flex-wrap:nowrap!important;gap:clamp(10px,1.5vw,28px)!important;min-height:70px!important;padding:9px clamp(13px,1.5vw,27px)!important;align-items:center!important}
+header>div:first-child{display:flex;flex:0 0 auto;align-items:center;gap:10px;white-space:nowrap}
+header h1{font-size:clamp(15px,1.16vw,21px)!important;white-space:nowrap}
+header .header-period{margin-left:3px!important;font-size:clamp(10px,.75vw,13px)!important;white-space:nowrap}
+header>nav{display:flex!important;flex:1 1 auto;min-width:0;flex-wrap:nowrap!important;align-items:center;gap:2px;background:transparent!important;padding:0!important;margin:0!important;overflow-x:auto;overflow-y:hidden;scrollbar-width:thin;scrollbar-color:#6787af transparent}
+header>nav .tab{padding:9px clamp(7px,.65vw,12px)!important;font-size:clamp(10px,.73vw,12px)!important;font-weight:650;white-space:nowrap;flex:0 0 auto}
+header>.header-actions{flex:0 0 auto;margin-left:0!important;gap:8px!important;flex-wrap:nowrap!important;white-space:nowrap}
+header #dashboardTop button.secondary,header #sessionTools button{padding:8px 10px!important;font-size:11px!important}
+header #sessionTools{gap:8px!important}
+header #sessionLabel{font-size:11px}
+header #counter{font-size:11px!important;padding:6px 10px!important}
+@media(max-width:1220px){header{flex-wrap:wrap!important}header>nav{order:3;flex:1 0 100%;width:100%;border-top:1px solid rgba(255,255,255,.13);padding-top:7px!important}header>.header-actions{margin-left:auto!important}header h1{font-size:17px!important}}
+@media print{header>nav{display:none!important}}
+
+/* SIGHE V77: navegación lateral compacta */
+:root{--sighe-sidebar-width:216px;--sighe-topbar-height:70px}
+body:not(.auth-locked)>header{height:var(--sighe-topbar-height)!important;min-height:var(--sighe-topbar-height)!important;position:sticky;top:0;z-index:85;width:100%;padding:10px 24px!important;display:flex!important;flex-wrap:nowrap!important;box-shadow:0 1px 4px #09182b24}
+body:not(.auth-locked)>header .header-actions{margin-left:auto!important}
+body:not(.auth-locked)>header h1{font-size:19px!important;white-space:nowrap}
+body:not(.auth-locked)>header .header-period{font-size:12px!important}
+body:not(.auth-locked)>.sighe-sidebar{position:fixed;left:0;top:var(--sighe-topbar-height);bottom:0;width:var(--sighe-sidebar-width);z-index:80;background:#173a69;color:#e4efff;border-right:1px solid #214d81;display:flex;flex-direction:column;overflow-y:auto;overflow-x:hidden;box-shadow:3px 0 15px #0d254023}
+.sighe-sidebar .sidebar-brand{display:flex;align-items:center;gap:10px;padding:24px 19px 18px;font-weight:800;font-size:15px;letter-spacing:.7px;color:#fff;border-bottom:1px solid #ffffff25}
+.sighe-sidebar .sidebar-brand-icon{display:grid;place-items:center;width:35px;height:35px;background:#2c639a;border:1px solid #ffffff24;border-radius:10px;font-size:21px}
+.sighe-sidebar nav{display:flex!important;flex-direction:column!important;align-items:stretch!important;gap:5px!important;background:transparent!important;padding:15px 10px!important;min-height:0!important;width:100%!important;flex-wrap:nowrap!important;overflow:visible!important;margin:0!important}
+.sighe-sidebar nav .tab{display:flex;align-items:center;justify-content:flex-start;min-height:43px;padding:11px 13px!important;border-radius:9px;font-size:12px!important;line-height:1.2;text-align:left;color:#e3efff!important;background:transparent!important;white-space:normal!important;width:100%;font-weight:600}
+.sighe-sidebar nav .tab.active,.sighe-sidebar nav .tab:hover{background:#e8f3ff!important;color:#163c70!important}
+.sighe-sidebar nav .tab[hidden]{display:none!important}
+body:not(.auth-locked)>main{margin-left:var(--sighe-sidebar-width)!important;width:calc(100% - var(--sighe-sidebar-width))!important;max-width:none!important;padding:17px 28px 45px!important}
+body.auth-locked .sighe-sidebar{display:none!important}
+@media(max-width:980px){:root{--sighe-sidebar-width:177px}body:not(.auth-locked)>main{padding:14px 14px 40px!important}.sighe-sidebar nav .tab{font-size:11px!important;padding:10px!important}}
+@media(max-width:640px){:root{--sighe-sidebar-width:66px;--sighe-topbar-height:65px}.sighe-sidebar .sidebar-brand{font-size:0;justify-content:center;padding:15px 0}.sighe-sidebar .sidebar-brand-icon{font-size:21px}.sighe-sidebar nav{padding:9px 5px!important}.sighe-sidebar nav .tab{font-size:9px!important;min-height:48px;padding:7px 3px!important;text-align:center;justify-content:center;word-break:break-word}body:not(.auth-locked)>header{padding:8px 12px!important}body:not(.auth-locked)>header h1{font-size:14px!important}body:not(.auth-locked)>header .header-period{display:none!important}body:not(.auth-locked)>main{padding:10px!important}}
+@media print{body:not(.auth-locked)>.sighe-sidebar{display:none!important}body:not(.auth-locked)>main{margin-left:0!important;width:100%!important;padding:0!important}body:not(.auth-locked)>header{position:static!important}}
 </style><style>
 .mc-legend{display:flex;align-items:center;gap:16px;flex-wrap:wrap;font-size:11px;color:#536783;margin:6px 0 15px}.mc-legend span{display:inline-flex;align-items:center;gap:5px}.mc-dot{display:inline-block;width:10px;height:10px;border-radius:2px}.mc-note{margin-left:auto}.mc-row{display:grid;grid-template-columns:minmax(95px,140px) minmax(0,1fr);align-items:center;gap:12px;border-bottom:1px solid #edf1f6;padding:7px 0}.mc-row:last-child{border-bottom:0}.mc-month{font-size:12px;font-weight:600}.mc-bars{min-width:0;display:grid;gap:5px}.mc-barline{display:grid;grid-template-columns:minmax(0,1fr) 78px;gap:9px;align-items:center}.mc-track{height:11px;background:#e8eef5;border-radius:4px;overflow:hidden}.mc-fill{height:100%;border-radius:4px}.mc-barline strong,.mc-barline span{font-size:11px;white-space:nowrap;font-weight:650}.mc-missing{color:#8b98aa;font-style:italic;font-weight:400!important}@media(max-width:620px){.mc-row{grid-template-columns:90px minmax(0,1fr);gap:6px}.mc-barline{grid-template-columns:minmax(0,1fr) 65px;gap:5px}.mc-note{width:100%;margin-left:0}}
 </style>
@@ -112,8 +340,285 @@ nav #dashboardTop button.secondary{background:#e9f1fa;color:#174372;padding:9px 
 nav #dashboardTop.hidden{display:none!important}
 @media(max-width:950px){nav #dashboardTop{width:100%;margin:6px 0 2px!important;padding-left:0;justify-content:flex-end}}
 @media print{nav #dashboardTop{display:none!important}}
-</style></head><body class="auth-locked"><div id="loginScreen" class="login-screen"><section class="login-art"></section><section class="login-form-pane"><form id="loginForm" class="login-form" autocomplete="off"><div class="login-avatar"><svg width="40" height="40" viewBox="0 0 24 24" fill="white" aria-hidden="true"><circle cx="12" cy="7.5" r="4"/><path d="M4.5 20v-2.5A7.5 7.5 0 0 1 12 10a7.5 7.5 0 0 1 7.5 7.5V20Z"/></svg></div><h2>Acceso al sistema</h2><p>Ingrese sus credenciales para continuar.</p><label for="loginUser">Usuario</label><input id="loginUser" required autocomplete="username" placeholder="Ingrese usuario"><label for="loginPass">Contraseña</label><input id="loginPass" type="password" required autocomplete="current-password" placeholder="Ingrese contraseña"><button type="submit">Ingresar ❯</button><div id="loginError" class="login-error" role="alert"></div></form></section></div><header><div><h1>Horas extraordinarias</h1><span id="headerPeriod" class="header-period"></span></div><span class="pill" id="counter">17 IPRESS</span></header><nav><button class="tab active" data-view="dashboard">Dashboard</button><button class="tab" data-view="anual">Comparativo anual</button><button class="tab" data-view="ipress">IPRESS</button><button class="tab" data-view="servicios">Servicios</button><button class="tab" data-view="historico">Histórico y cruces</button><button class="tab" data-view="carga">Importar archivos</button><button class="tab" data-view="auditoria">Auditoría</button><div id="dashboardTop" class="dash-head"><div class="title-placeholder"><h2 id="dashTitle" class="hidden">Panel mensual</h2></div><div class="stack"><button class="secondary" id="prevMonth">◀ Mes anterior</button><button class="secondary" id="nextMonth">Mes siguiente ▶</button><button class="secondary" onclick="window.print()">Imprimir tablero</button></div></div><div id="sessionTools"><span id="sessionLabel"></span><button type="button" id="logoutBtn">Cerrar sesión</button></div></nav><main><div class="toolbar"><label>IPRESS<div class="ip-multi" id="ipMulti"><button type="button" id="ipTrigger" class="ip-trigger" aria-expanded="false">Todas las IPRESS ▾</button><div id="ipMenu" class="ip-menu" hidden><input type="search" id="ipSearch" placeholder="Buscar establecimiento..." autocomplete="off"><div class="ip-actions"><button type="button" id="ipAll" class="secondary">Seleccionar todas</button><button type="button" id="ipNone" class="secondary">Limpiar</button></div><div id="ipChoices" class="ip-choices"></div><div id="ipStatus" class="ip-status"></div></div></div></label><label style="display:none!important" aria-hidden="true">Periodo<select id="periodBasis" style="min-width:174px"><option value="solicitado" selected>Mes de las horas solicitadas</option></select></label><div class="date-range" id="periodRange" role="group" aria-label="Periodo solicitado por rango de fechas"><label>Desde<div class="date-combo"><input type="text" id="dateFromText" placeholder="dd/mm/aaaa" maxlength="10" inputmode="numeric" autocomplete="off" aria-label="Escribir fecha inicial"/><button type="button" class="cal-button" id="dateFromButton" title="Abrir calendario" aria-label="Abrir calendario inicial">▦</button><input type="date" id="dateFrom" class="native-picker" tabindex="-1" aria-label="Calendario inicial" /></div></label><label>Hasta<div class="date-combo"><input type="text" id="dateToText" placeholder="dd/mm/aaaa" maxlength="10" inputmode="numeric" autocomplete="off" aria-label="Escribir fecha final"/><button type="button" class="cal-button" id="dateToButton" title="Abrir calendario" aria-label="Abrir calendario final">▦</button><input type="date" id="dateTo" class="native-picker" tabindex="-1" aria-label="Calendario final" /></div></label><button type="button" id="dateAll" class="secondary date-all" title="Restablecer todos los periodos">Todos</button></div><label style="display:none!important" aria-hidden="true">Servicio<select id="filterService"><option value="">Todos los servicios</option></select></label><label style="display:none!important" aria-hidden="true">Vista<select id="filterView" tabindex="-1"><option value="month">Mes seleccionado</option><option value="trend" selected>Evolución histórica</option></select></label><label>Modalidad<select id="filterMod"><option value="HE">Horas extras (HE)</option><option value="RPCT">RPCT (horas)</option><option value="">Todas: separar unidades</option></select></label><button class="secondary" id="export">Exportar matriz CSV</button><span class="muted right" id="scope"></span></div>
-<div id="periodExplanation" class="muted" style="display:none!important" aria-hidden="true"></div><section id="dashboard" class="section show"><div class="mod-summary"><div class="cards mod-cards" id="modCards"></div></div><div class="cards" id="cards"></div><div class="grid"><div class="panel"><h2 id="trendTitle">Evolución mensual de horas solicitadas</h2><div id="trendChart" class="chartbox"></div></div><div class="panel"><h2 id="compareTitle">Solicitadas vs ejecutadas · mismo mes de servicio</h2><div id="compareChart" class="chartbox"></div></div></div><div class="grid"><div class="panel"><h2 id="rankingTitle">Ranking de IPRESS</h2><div id="bars" class="bar-area"></div></div><div class="panel"><h2>Requerimientos por servicio</h2><div id="serviceBars" class="bar-area"></div></div></div><div class="panel"><h2 id="occTitle">Horas por grupo ocupacional · solicitado vs ejecutado</h2><p class="muted" id="occNote">Corresponde al mismo mes de servicio y modalidad seleccionados.</p><div id="occBars" class="bar-area"></div></div><div id="findings" hidden></div></section>
+</style><style>
+/* V75: KPIs compactos y sobrios. Prioridad visual para gráficas. */
+#modCards.mod-cards{gap:12px!important;margin:2px 0 12px!important;align-items:stretch}
+#modCards .mod-card{min-height:112px!important;height:112px!important;padding:0 0 9px!important;border-radius:12px!important;border:1px solid #d7e2ef!important;background:#fff!important;box-shadow:0 2px 6px rgba(20,52,88,.055)!important}
+#modCards .mod-card::before{display:none!important;content:none!important}
+#modCards .mod-card .executive-header{min-height:33px!important;height:33px!important;padding:5px 13px!important;border-radius:11px 11px 0 0!important;box-shadow:none!important}
+#modCards .mod-card .executive-header .k{font-size:13px!important;letter-spacing:0!important;font-weight:750!important;line-height:1.2!important}
+#modCards .mod-card .executive-icon{min-height:22px!important;padding-left:10px!important;border-left:1px solid #ffffff70!important}
+#modCards .mod-card .executive-icon svg{width:21px!important;height:21px!important;stroke-width:1.8!important}
+#modCards .mod-card .value{font-size:clamp(18px,1.55vw,25px)!important;letter-spacing:-.45px!important;line-height:1.12!important;margin:11px 7px 2px!important;font-weight:800!important;text-align:center!important}
+#modCards .mod-card .desc{font-size:10px!important;line-height:1.2!important;margin:0 7px 7px!important;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#modCards .mod-card .executive-progress{height:4px!important;margin:auto 18px 0!important;border-radius:20px!important;background:#e6edf5!important}
+#modCards .mod-card .executive-progress-fill{border-radius:20px!important}
+@media(max-width:1100px){#modCards .mod-card{height:112px!important}}
+@media(max-width:650px){#modCards .mod-card{height:112px!important;min-height:112px!important}#modCards .mod-card .value{font-size:23px!important}}
+</style>
+<style>
+/* SIGHE V78 | Capa de presentación analítica estilo Power BI */
+:root{
+ --sighe-sidebar-width:196px;
+ --sighe-topbar-height:64px;
+ --bi-ink:#182a41;
+ --bi-muted:#64758a;
+ --bi-accent:#1765ad;
+ --bi-border:#e1e7ef;
+ --bi-canvas:#f4f6fa;
+}
+body:not(.auth-locked){background:var(--bi-canvas);color:var(--bi-ink)}
+body:not(.auth-locked)>header{
+ height:64px!important;min-height:64px!important;
+ background:#112a4b!important;
+ padding:8px 22px!important;
+ box-shadow:none!important;border-bottom:1px solid #27425f;
+}
+body:not(.auth-locked)>header h1{font-size:18px!important;font-weight:750}
+body:not(.auth-locked)>header .header-period{color:#bad1e9!important;font-weight:500!important}
+body:not(.auth-locked)>.sighe-sidebar{
+ width:196px;background:#162f51!important;
+ border-right:1px solid #203e63;box-shadow:none!important
+}
+.sighe-sidebar .sidebar-brand{
+ min-height:77px;padding:21px 15px 17px!important;
+ border-color:#ffffff16!important;letter-spacing:.3px!important
+}
+.sighe-sidebar .sidebar-brand-icon{border-radius:9px;background:#224b75!important}
+.sighe-sidebar nav{padding:14px 9px!important;gap:3px!important}
+.sighe-sidebar nav .tab{
+ min-height:43px!important;gap:10px!important;
+ font-size:12px!important;font-weight:550!important;
+ border-radius:7px!important;padding:11px 11px!important;
+ transition:background .13s ease!important
+}
+.sighe-sidebar nav .tab::before{
+ content:"";display:inline-block;flex:0 0 15px;
+ width:15px;height:15px;opacity:.78;
+ background-size:15px 15px;background-repeat:no-repeat;
+ background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23cfdeef' stroke-width='1.9' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='3' y='3' width='18' height='18' rx='2'/%3E%3Cpath d='M7 16v-5m5 5V7m5 9v-3'/%3E%3C/svg%3E")
+}
+.sighe-sidebar nav .tab.active{background:#dcecff!important;color:#153a66!important;font-weight:750!important}
+.sighe-sidebar nav .tab.active::before{filter:brightness(.3) sepia(1) saturate(3) hue-rotate(175deg)}
+.sighe-sidebar nav .tab:hover:not(.active){background:#244768!important;color:white!important}
+body:not(.auth-locked)>main{
+ margin-left:196px!important;width:calc(100% - 196px)!important;
+ padding:20px 22px 45px!important;max-width:none!important
+}
+body:not(.auth-locked) .toolbar{
+ background:#fff;border:1px solid var(--bi-border);
+ border-radius:9px!important;padding:14px 16px!important;
+ box-shadow:0 1px 2px #10244106;
+ margin-bottom:16px!important;gap:12px!important
+}
+body:not(.auth-locked) .toolbar label{
+ color:#56677d;font-size:11px;font-weight:650;letter-spacing:.01em
+}
+body:not(.auth-locked) .toolbar select,
+body:not(.auth-locked) .toolbar input,
+body:not(.auth-locked) .ip-trigger{
+ border-radius:6px!important;border-color:#d6dfea!important;
+ box-shadow:none!important;min-height:36px;background:#fff;color:#243d5b
+}
+#modCards.mod-cards{
+ display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr))!important;
+ gap:12px!important;margin:0 0 16px!important
+}
+#modCards .mod-card{
+ --accent:#1f68b3;--accent2:var(--accent);
+ min-height:119px!important;height:119px!important;
+ padding:0!important;border:1px solid #dce4ef!important;
+ border-top:3px solid var(--accent)!important;
+ border-radius:9px!important;background:#fff!important;
+ box-shadow:0 1px 3px #1431510b!important;
+ display:grid!important;grid-template-rows:31px auto 21px 5px!important;
+ position:relative!important;overflow:hidden!important;
+}
+#modCards .mod-card::before{display:none!important}
+#modCards .mod-card .executive-header{
+ min-height:0!important;height:31px!important;
+ background:transparent!important;color:#556b83!important;
+ border-radius:0!important;padding:8px 13px 0!important;
+ box-shadow:none!important;align-items:center!important
+}
+#modCards .mod-card .executive-header .k{
+ font-size:11.5px!important;font-weight:700!important;color:#51667e!important;
+ letter-spacing:0!important;line-height:1.2
+}
+#modCards .mod-card .executive-icon{
+ border:0!important;min-height:0!important;padding:0!important;
+ width:21px;height:21px;opacity:.85
+}
+#modCards .mod-card .executive-icon svg{
+ width:19px!important;height:19px!important;
+ stroke:var(--accent)!important;stroke-width:1.8!important
+}
+#modCards .mod-card .value{
+ text-align:left!important;font-size:clamp(17px,1.85vw,26px)!important;
+ margin:5px 13px 0!important;font-weight:800!important;line-height:1.12!important;
+ letter-spacing:-.6px!important;color:#122d50!important;
+ overflow:hidden;text-overflow:ellipsis
+}
+#modCards .mod-card .desc{
+ text-align:left!important;color:#697d93!important;
+ font-size:10px!important;line-height:1.2!important;
+ margin:0 13px!important;white-space:nowrap;overflow:hidden;text-overflow:ellipsis
+}
+#modCards .mod-card .executive-progress{
+ height:3px!important;min-height:3px!important;
+ margin:2px 13px 0!important;background:#e9eff6!important;border-radius:2px!important
+}
+#modCards .mod-card .executive-progress-fill{
+ background:var(--accent)!important;border-radius:2px!important
+}
+#modCards .mod-card.kpi-he-request{--accent:#216cb6}
+#modCards .mod-card.kpi-he-exec{--accent:#06a0bb}
+#modCards .mod-card.kpi-rpct-request{--accent:#4154a2}
+#modCards .mod-card.kpi-rpct-exec{--accent:#e28a36}
+body:not(.auth-locked) #dashboard>.grid{
+ gap:15px!important;margin:0 0 15px!important;
+ grid-template-columns:repeat(2,minmax(0,1fr))
+}
+body:not(.auth-locked) .panel{
+ border-radius:9px!important;border:1px solid var(--bi-border)!important;
+ padding:15px 16px!important;background:#fff!important;
+ box-shadow:0 1px 3px #102f4f08!important
+}
+body:not(.auth-locked) .panel h2{
+ font-size:14px!important;font-weight:750!important;
+ line-height:1.35!important;color:#1d3656!important;margin:0 0 11px!important
+}
+body:not(.auth-locked) .chartbox{
+ min-height:270px!important;background:#fff!important;
+ border-radius:7px!important;border:1px solid #edf0f5!important;
+ padding:10px 10px!important
+}
+body:not(.auth-locked) .chartbox svg{max-height:360px}
+body:not(.auth-locked) .muted{font-size:11px!important;color:var(--bi-muted)}
+body:not(.auth-locked) .bar-area{scrollbar-width:thin}
+body:not(.auth-locked) button:focus-visible,
+body:not(.auth-locked) select:focus-visible,
+body:not(.auth-locked) input:focus-visible{
+ outline:2px solid #2b7dc5;outline-offset:2px
+}
+@media(min-width:1450px){
+ body:not(.auth-locked)>main{padding:20px 28px 45px!important}
+ #modCards .mod-card .value{font-size:25px!important}
+}
+@media(max-width:1150px){
+ #modCards.mod-cards{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+ body:not(.auth-locked) #dashboard>.grid{grid-template-columns:1fr!important}
+}
+@media(max-width:700px){
+ :root{--sighe-sidebar-width:64px}
+ body:not(.auth-locked)>.sighe-sidebar{width:64px}
+ body:not(.auth-locked)>main{margin-left:64px!important;width:calc(100% - 64px)!important;padding:12px!important}
+ .sighe-sidebar nav .tab{font-size:0!important;justify-content:center!important;padding:10px 4px!important}
+ .sighe-sidebar nav .tab::before{width:17px;height:17px;flex-basis:17px;background-size:17px}
+ #modCards.mod-cards{gap:8px!important}
+ #modCards .mod-card{min-height:115px!important}
+ #modCards .mod-card .value{font-size:clamp(15px,3vw,23px)!important}
+}
+@media print{
+ body:not(.auth-locked)>main{margin-left:0!important;width:100%!important;padding:0!important}
+ .sighe-sidebar{display:none!important}
+ #modCards .mod-card{break-inside:avoid!important;print-color-adjust:exact}
+ .panel{break-inside:avoid}
+}
+</style><style>
+/* V79: Barra de filtros ejecutiva, coherente con las tarjetas KPI */
+body:not(.auth-locked) .toolbar{
+ position:relative;display:flex!important;align-items:center!important;
+ gap:10px!important;flex-wrap:wrap!important;
+ background:#fff!important;border:1px solid #dce5f0!important;
+ border-top:3px solid #2572ba!important;
+ border-radius:9px!important;box-shadow:0 2px 5px rgba(18,47,81,.055)!important;
+ padding:12px 15px!important;margin-bottom:14px!important;
+ min-height:87px!important;
+}
+body:not(.auth-locked) .toolbar>label:not([aria-hidden]){
+ font-size:10.5px!important;font-weight:700!important;color:#60748c!important;
+ letter-spacing:.01em!important;gap:5px!important;margin:0!important;
+ min-width:0!important;
+}
+body:not(.auth-locked) .toolbar>label:has(#ipMulti){flex:0 1 245px!important}
+body:not(.auth-locked) .toolbar>label:has(#filterMod){flex:0 1 190px!important}
+body:not(.auth-locked) .toolbar .ip-multi,
+body:not(.auth-locked) .toolbar #ipTrigger,
+body:not(.auth-locked) .toolbar #filterMod{width:100%!important;min-width:0!important}
+body:not(.auth-locked) .toolbar #ipTrigger,
+body:not(.auth-locked) .toolbar #filterMod,
+body:not(.auth-locked) .toolbar .date-combo{
+ height:37px!important;min-height:37px!important;background:#fafcff!important;
+ border:1px solid #d7e2ef!important;border-radius:6px!important;
+ box-shadow:none!important;color:#173c63!important;
+ font-size:12px!important;font-weight:600!important;
+}
+body:not(.auth-locked) .toolbar #ipTrigger{padding:8px 12px!important}
+body:not(.auth-locked) .toolbar #filterMod{padding:7px 10px!important}
+body:not(.auth-locked) .toolbar .date-range{
+ display:flex!important;align-items:flex-end!important;flex-wrap:nowrap!important;
+ gap:8px!important;max-width:100%!important;width:auto!important;margin:0!important;
+}
+body:not(.auth-locked) .toolbar .date-range>label{
+ min-width:0!important;flex:0 0 150px!important;
+ font-size:10.5px!important;font-weight:700!important;color:#60748c!important;
+ gap:5px!important;margin:0!important;
+}
+body:not(.auth-locked) .toolbar .date-combo{width:150px!important}
+body:not(.auth-locked) .toolbar .date-combo input[type=text]{
+ width:calc(100% - 30px)!important;padding:6px 7px!important;
+ font-size:12px!important;font-weight:650!important;
+}
+body:not(.auth-locked) .toolbar .cal-button{
+ width:30px!important;height:34px!important;font-size:17px!important;color:#3676b1!important;
+}
+body:not(.auth-locked) .toolbar #dateAll{
+ height:37px!important;min-height:37px!important;border-radius:6px!important;
+ padding:0 12px!important;background:#e9f2fd!important;color:#1f5588!important;
+ font-size:11.5px!important;font-weight:750!important;border:1px solid #dbe8f6!important;
+}
+body:not(.auth-locked) .toolbar #export{
+ min-height:37px!important;height:37px!important;
+ border-radius:6px!important;padding:0 14px!important;
+ background:#eaf2fb!important;color:#18528b!important;
+ font-size:11.5px!important;font-weight:750!important;
+ border:1px solid #dce7f3!important;
+}
+body:not(.auth-locked) .toolbar #export:hover,
+body:not(.auth-locked) .toolbar #dateAll:hover{background:#dceaf9!important}
+body:not(.auth-locked) .toolbar #scope{margin-left:auto!important;max-width:200px!important;
+ font-size:10px!important;color:#778ba2!important;text-align:right!important}
+@media(max-width:1160px){
+ body:not(.auth-locked) .toolbar>label:has(#ipMulti){flex:1 1 190px!important}
+ body:not(.auth-locked) .toolbar>label:has(#filterMod){flex:1 1 165px!important}
+ body:not(.auth-locked) .toolbar .date-range>label{flex:0 0 138px!important}
+ body:not(.auth-locked) .toolbar .date-combo{width:138px!important}
+ body:not(.auth-locked) .toolbar #scope{margin-left:0!important}
+}
+@media(max-width:720px){
+ body:not(.auth-locked) .toolbar{padding:12px!important;gap:9px!important}
+ body:not(.auth-locked) .toolbar .date-range{flex-wrap:wrap!important}
+ body:not(.auth-locked) .toolbar .date-range>label{flex:1 1 120px!important}
+ body:not(.auth-locked) .toolbar .date-combo{width:100%!important}
+}
+@media print{body:not(.auth-locked) .toolbar{box-shadow:none!important;break-inside:avoid!important}}
+</style><style>/* V80: controles retirados de la vista sin afectar los filtros */
+#dateAll, #export {display:none!important;}
+</style><style>
+/* V81 — Contador de IPRESS en cabecera del menú lateral */
+.sighe-sidebar .sidebar-brand{display:flex!important;align-items:center!important;gap:10px!important;padding:15px 14px!important;min-height:79px!important}
+.sighe-sidebar .sidebar-brand-content{display:flex;flex-direction:column;gap:5px;min-width:0}
+.sighe-sidebar .sidebar-brand-content strong{font-size:14px;font-weight:750;line-height:1.2;letter-spacing:.4px;color:white}
+.sighe-sidebar .sidebar-ipress-counter{width:max-content;max-width:100%;background:#dcecff;color:#194777;border-radius:6px;padding:3px 8px;line-height:1.2;font-size:10px;font-weight:750;letter-spacing:0;white-space:nowrap}
+@media(max-width:700px){.sighe-sidebar .sidebar-brand{justify-content:center!important;padding:13px 4px!important}.sighe-sidebar .sidebar-brand-content{display:none}}
+@media print{.sighe-sidebar .sidebar-ipress-counter{display:none}}
+</style><style>
+/* SIGHE V82 — Cabecera azul medio, sin modificar la barra lateral ni los módulos */
+body:not(.auth-locked)>header{background:#24577f!important;border-bottom:1px solid #1e486c!important}
+body:not(.auth-locked)>header .header-period{color:#e0efff!important}
+</style></head><body class="auth-locked"><div id="loginScreen" class="login-screen"><section class="login-art"></section><section class="login-form-pane"><form id="loginForm" class="login-form" autocomplete="off"><div class="login-avatar"><svg width="40" height="40" viewBox="0 0 24 24" fill="white" aria-hidden="true"><circle cx="12" cy="7.5" r="4"/><path d="M4.5 20v-2.5A7.5 7.5 0 0 1 12 10a7.5 7.5 0 0 1 7.5 7.5V20Z"/></svg></div><h2>Acceso al sistema</h2><p>Ingrese sus credenciales para continuar.</p><label for="loginUser">Usuario</label><input id="loginUser" required autocomplete="username" placeholder="Ingrese usuario"><label for="loginPass">Contraseña</label><input id="loginPass" type="password" required autocomplete="current-password" placeholder="Ingrese contraseña"><button type="submit">Ingresar ❯</button><div id="loginError" class="login-error" role="alert"></div></form></section></div><header><div><h1>Horas extraordinarias</h1><span id="headerPeriod" class="header-period"></span></div><div class="header-actions"><div id="dashboardTop" class="dash-head"><div class="title-placeholder"><h2 id="dashTitle" class="hidden">Panel mensual</h2></div><div class="stack"><button class="secondary" onclick="window.print()">Imprimir tablero</button></div></div><div id="sessionTools"><span id="sessionLabel"></span><button type="button" id="logoutBtn">Cerrar sesión</button></div></div></header><aside id="sigheSidebar" class="sighe-sidebar" aria-label="Navegación principal"><div class="sidebar-brand"><span class="sidebar-brand-icon">▥</span><span class="sidebar-brand-content"><strong>SIGHE</strong><span class="sidebar-ipress-counter" id="counter">17 IPRESS</span></span></div><nav><button class="tab active" data-view="dashboard">Dashboard</button><button class="tab" data-view="anual">Comparativo anual</button><button class="tab" data-view="ipress">IPRESS</button><button class="tab" data-view="servicios">Servicios</button><button class="tab" data-view="historico">Histórico y cruces</button><button class="tab" data-view="carga">Importar archivos</button><button class="tab" data-view="auditoria">Auditoría</button></nav></aside><main><div class="toolbar"><label>IPRESS<div class="ip-multi" id="ipMulti"><button type="button" id="ipTrigger" class="ip-trigger" aria-expanded="false">Todas las IPRESS ▾</button><div id="ipMenu" class="ip-menu" hidden><input type="search" id="ipSearch" placeholder="Buscar establecimiento..." autocomplete="off"><div class="ip-actions"><button type="button" id="ipAll" class="secondary">Seleccionar todas</button><button type="button" id="ipNone" class="secondary">Limpiar</button></div><div id="ipChoices" class="ip-choices"></div><div id="ipStatus" class="ip-status"></div></div></div></label><label style="display:none!important" aria-hidden="true">Periodo<select id="periodBasis" style="min-width:174px"><option value="solicitado" selected>Mes de las horas solicitadas</option></select></label><div class="date-range" id="periodRange" role="group" aria-label="Periodo solicitado por rango de fechas"><label>Desde<div class="date-combo"><input type="text" id="dateFromText" placeholder="dd/mm/aaaa" maxlength="10" inputmode="numeric" autocomplete="off" aria-label="Escribir fecha inicial"/><button type="button" class="cal-button" id="dateFromButton" title="Abrir calendario" aria-label="Abrir calendario inicial">▦</button><input type="date" id="dateFrom" class="native-picker" tabindex="-1" aria-label="Calendario inicial" /></div></label><label>Hasta<div class="date-combo"><input type="text" id="dateToText" placeholder="dd/mm/aaaa" maxlength="10" inputmode="numeric" autocomplete="off" aria-label="Escribir fecha final"/><button type="button" class="cal-button" id="dateToButton" title="Abrir calendario" aria-label="Abrir calendario final">▦</button><input type="date" id="dateTo" class="native-picker" tabindex="-1" aria-label="Calendario final" /></div></label><button type="button" id="dateAll" class="secondary date-all" title="Restablecer todos los periodos">Todos</button></div><label style="display:none!important" aria-hidden="true">Servicio<select id="filterService"><option value="">Todos los servicios</option></select></label><label style="display:none!important" aria-hidden="true">Vista<select id="filterView" tabindex="-1"><option value="month">Mes seleccionado</option><option value="trend" selected>Evolución histórica</option></select></label><label>Modalidad<select id="filterMod"><option value="HE">Horas extras (HE)</option><option value="RPCT">RPCT (horas)</option><option value="">Todas: separar unidades</option></select></label><button class="secondary" id="export">Exportar matriz CSV</button><span class="muted right" id="scope"></span></div>
+<div id="periodExplanation" class="muted" style="display:none!important" aria-hidden="true"></div><section id="dashboard" class="section show"><div class="mod-summary"><div class="cards mod-cards" id="modCards"></div></div><div class="cards" id="cards"></div><div class="grid"><div class="panel"><h2 id="trendTitle">Evolución mensual de horas solicitadas</h2><div id="trendChart" class="chartbox"></div></div><div class="panel"><h2 id="compareTitle">Solicitadas vs ejecutadas · mismo mes de servicio</h2><div id="compareChart" class="chartbox"></div></div></div><div class="grid"><div class="panel"><h2 id="occTitle">Horas por grupo ocupacional · solicitado vs ejecutado</h2><p class="muted" id="occNote">Corresponde al mismo mes de servicio y modalidad seleccionados.</p><div id="occBars" class="bar-area"></div></div><div class="panel"><h2>Requerimientos por servicio</h2><div id="serviceBars" class="bar-area"></div></div></div><div class="panel monthly-full-panel"><h2 id="rankingTitle" hidden></h2><div id="bars" class="bar-area monthly-executive"></div></div><div id="findings" hidden></div></section>
 <section id="anual" class="section"><div class="panel" id="annualPanel"><h2>Comparativo anual · horas solicitadas y ejecutadas</h2><div id="annualChart"></div></div></section><section id="ipress" class="section"><div class="panel"><h2>Comparativo por establecimiento</h2><div class="scroll" id="iptable"></div></div></section>
 <section id="servicios" class="section"><div class="panel"><h2>Requerimientos desagregados por servicio</h2><div class="scroll" id="svtable"></div><p class="muted">Detalle derivado de las hojas de requerimiento. Los campos vacíos de ejecución no se convierten en cero. Los totales oficiales provienen del resumen de cada archivo.</p></div></section>
 <section id="historico" class="section"><div class="panel"><h2>Comparación temporal del mismo periodo de servicio</h2><p class="muted">Pedido: presentado dos meses antes. Ejecución: reportada tres meses después del servicio realizado. La coincidencia se construye por IPRESS, modalidad, servicio y periodo realizado.</p><div id="histtable" class="scroll"></div></div></section>
@@ -195,19 +700,91 @@ function serviceOptions(){let el=$('#filterService'),prev=el.value;let names=[..
 function requireValue(r,mod,svc){return svc?sumDet(r,'pedido',mod,svc):summary(r,mod)}
 function getExecutions(p,ip,mod,svc){let rows=store.filter(r=>r.ejecucion===p&&ipAllowed(r.ipress));let known=rows.filter(r=>sumDet(r,'ejecucion',mod,svc)!=null);return {rows,known,n:known.reduce((t,r)=>t+sumDet(r,'ejecucion',mod,svc),0)}}
 function barViz(rows,color='#2771bf',empty='Sin registros'){if(!rows.length)return '<p class="empty">'+esc(empty)+'</p>';let max=Math.max(1,...rows.map(r=>r.n));return rows.map(r=>'<div class="barrow"><div title="'+esc(r.name)+'">'+esc(r.name)+'</div><div class="track"><div class="fill" style="width:'+Math.max(0,100*r.n/max)+'%;background:'+color+'"></div></div><b>'+fmt(r.n)+'</b></div>').join('')}
-function monthlyCompareViz(rows){
- if(!rows.length)return '<p class="empty">Sin meses disponibles</p>';
- const max=Math.max(1,...rows.flatMap(r=>[r.n,r.ex??0]));
- const legend='<div class="mc-legend"><span><i class="mc-dot" style="background:#2771bf"></i>Solicitadas</span><span><i class="mc-dot" style="background:#df9338"></i>Ejecutadas</span><span class="mc-note">Ordenado por horas solicitadas (mayor a menor)</span></div>';
- return legend+rows.map(r=>{const ratio=(r.ex!=null&&r.n)?(r.ex/r.n*100):null;return '<div class="mc-row" data-period="'+esc(r.p)+'"><div class="mc-month">'+esc(monthText(r.p))+'</div><div class="mc-bars"><div class="mc-barline"><div class="mc-track"><div class="mc-fill" style="width:'+Math.max(4,100*r.n/max)+'%;background:linear-gradient(90deg,#2f7ed0,#256dbb)"></div></div><strong>'+fmt(r.n)+' h</strong></div><div class="mc-barline"><div class="mc-track">'+(r.ex==null?'<div class="mc-fill" style="width:0;background:linear-gradient(90deg,#eba14a,#db8a29)"></div>':'<div class="mc-fill" style="width:'+Math.max(4,100*r.ex/max)+'%;background:linear-gradient(90deg,#eba14a,#db8a29)"></div>')+'</div><span class="'+(r.ex==null?'mc-missing':'')+'">'+(r.ex==null?'Sin dato':fmt(r.ex)+' h')+'</span></div>'+(ratio!=null?'<div class="compare-pills"><span class="compare-pill">Ejecución / solicitado: <strong>'+ratio.toFixed(1)+'%</strong></span></div>':'')+'</div></div>'}).join('');
+let monthlyYearSelection='all';
+let monthlyChartRows=[];
+function relocateMonthlyDetails(){
+ const root=document.querySelector('#bars');
+ const dest=document.querySelector('#monthlyDetailMount');
+ if(!root||!dest)return;
+ dest.replaceChildren();
+ const elements=root.querySelectorAll('.tl-diff-legend,.tl-unified-totals,.tl-details');
+ for(const el of elements)dest.append(el);
+ if(!elements.length){const p=document.createElement('p');p.className='muted';p.textContent='No se encontraron periodos para la selección actual.';dest.append(p)}
 }
+function monthlyCompareViz(rows){
+ const usable=rows.filter(r=>r.count>0&&/^\d{4}-(0[1-9]|1[0-2])$/.test(r.p)).sort((a,b)=>a.p.localeCompare(b.p));
+ if(!usable.length)return '<p class="empty">Sin requerimientos para la selección actual.</p>';
+ const years=[...new Set(usable.map(r=>r.p.slice(0,4)))];
+ if(monthlyYearSelection!=='all'&&!years.includes(monthlyYearSelection))monthlyYearSelection='all';
+ const displayed=monthlyYearSelection==='all'?usable:usable.filter(r=>r.p.startsWith(monthlyYearSelection));
+ const max=Math.max(1,...displayed.flatMap(r=>[Number(r.n)||0,Number.isFinite(r.ex)?r.ex:0,Number.isFinite(r.ex)?Math.abs(r.n-r.ex):0]))*1.12;
+ const W=Math.max(940, displayed.length*106+118),H=365,L=64,R=32,T=46,B=55;
+ const plotW=W-L-R,plotH=H-T-B,slot=plotW/displayed.length;
+ const bw=Math.min(23,slot*.22),gap=Math.min(5,slot*.045);
+ const y=v=>T+plotH-Math.max(0,v)/max*plotH;
+ const numeric=v=>fmt(v)+' h';
+ const first=displayed[0].p,last=displayed.at(-1).p;
+ const totalRequested=displayed.reduce((a,r)=>a+(Number(r.n)||0),0);
+ const comparables=displayed.filter(r=>Number.isFinite(r.ex));
+ const totalRequestedComparable=comparables.reduce((a,r)=>a+(Number(r.n)||0),0);
+ const totalExecutedComparable=comparables.reduce((a,r)=>a+r.ex,0);
+ let out='<div class="tl-year-selector" role="group" aria-label="Seleccionar un año; vuelve a pulsarlo para mostrar todos">';
+ for(const year of years)out+='<button type="button" class="tl-year-tab'+(monthlyYearSelection===year?' selected':'')+'" data-chart-year="'+year+'" aria-pressed="'+(monthlyYearSelection===year)+'">'+year+'</button>';
+ out+='</div>';
+ out+='<section class="tl-year tl-unified"><div class="tl-heading"><div class="tl-legend"><span><i class="tl-dot" style="background:#0b4b75"></i>Solicitadas</span><span><i class="tl-dot orange"></i>Ejecutadas</span><span><i class="tl-dot" style="background:#8363c3"></i>Diferencia</span><span><i class="tl-dot" style="background:#c85c50"></i>Exceso</span></div></div>';
+ let svg='<svg class="tl-svg tl-unified-svg" viewBox="0 0 '+W+' '+H+'" style="width:'+W+'px;min-width:'+W+'px;max-width:none;height:auto" role="img" aria-label="Comparativo cronológico de horas solicitadas, ejecutadas y diferencia, desde '+esc(monthText(first))+' hasta '+esc(monthText(last))+'"><defs><linearGradient id="tlUnReq" x1="0" x2="0" y1="0" y2="1"><stop offset="0%" stop-color="#155a88"/><stop offset="100%" stop-color="#07395f"/></linearGradient><linearGradient id="tlUnExec" x1="0" x2="0" y1="0" y2="1"><stop offset="0%" stop-color="#ffbf73"/><stop offset="100%" stop-color="#ed9942"/></linearGradient><linearGradient id="tlUnDiff" x1="0" x2="0" y1="0" y2="1"><stop offset="0%" stop-color="#9e85d8"/><stop offset="100%" stop-color="#7454ba"/></linearGradient></defs>';
+ for(let i=0;i<=4;i++){
+   const yy=T+plotH*i/4;
+   svg+='<line x1="'+L+'" y1="'+yy+'" x2="'+(W-R)+'" y2="'+yy+'" stroke="#e0e8f2"/><text x="'+(L-8)+'" y="'+(yy+4)+'" text-anchor="end" class="tl-axis">'+esc(fmt(max*(1-i/4)))+'</text>';
+ }
+ let prevYear='';
+ for(let i=0;i<displayed.length;i++){
+   const r=displayed[i],yr=r.p.slice(0,4),cx=L+(i+.5)*slot,base=T+plotH;
+   if(yr!==prevYear){
+     if(i>0){const boundary=L+i*slot;svg+='<line x1="'+boundary+'" y1="'+(T-16)+'" x2="'+boundary+'" y2="'+(base+37)+'" stroke="#a8bfdc" stroke-width="2" stroke-dasharray="6 5"/>'}
+     prevYear=yr;
+   }
+   const req=Number(r.n),hasReq=Number.isFinite(req),hasEx=Number.isFinite(r.ex),diff=hasReq&&hasEx?req-r.ex:null;
+   const pos=[cx-1.5*bw-gap,cx-bw/2,cx+bw/2+gap];
+   const series=[
+     {v:req,ok:hasReq,x:pos[0],fill:'url(#tlUnReq)',txt:'#14527f',name:'Solicitadas'},
+     {v:r.ex,ok:hasEx,x:pos[1],fill:'url(#tlUnExec)',txt:'#b46b2c',name:'Ejecutadas'},
+     {v:diff===null?null:Math.abs(diff),ok:diff!==null&&diff!==0,x:pos[2],fill:diff<0?'#c85c50':'url(#tlUnDiff)',txt:diff<0?'#b54e42':'#7454ba',name:diff<0?'Exceso':'Faltantes'}
+   ];
+   for(const b of series)if(b.ok){
+     const top=y(b.v),barH=Math.max(1,base-top);
+     svg+='<rect x="'+b.x+'" y="'+top+'" width="'+bw+'" height="'+barH+'" rx="3" fill="'+b.fill+'"><title>'+esc(monthText(r.p))+' · '+b.name+': '+esc(fmt(b.v))+' h</title></rect>';
+     svg+='<text x="'+(b.x+bw/2)+'" y="'+Math.max(12,top-9)+'" text-anchor="middle" class="tl-bar-value" fill="'+b.txt+'">'+esc(fmt(b.v))+'</text>';
+   }
+   svg+='<text x="'+cx+'" y="'+(base+26)+'" text-anchor="middle" class="tl-month">'+esc(months[Number(r.p.slice(5))-1].slice(0,3))+'-'+yr.slice(2)+'</text>';
+ }
+ svg+='</svg>';
+ out+='<div class="tl-chart tl-unified-chart" tabindex="0" aria-label="Desplácese horizontalmente para consultar todos los meses">'+svg+'</div>';
+ out+='<div class="tl-diff-legend"><b>Diferencia mensual:</b><span>Morado = horas faltantes</span><span>Rojo = exceso ejecutado</span><span>Sin dato = ejecución no informada</span></div>';
+ out+='<details class="tl-details"><summary>Ver detalle mensual de todos los periodos seleccionados</summary><div class="tl-table-scroll"><table class="tl-table"><thead><tr><th>Mes</th><th>Solicitadas</th><th>Ejecutadas</th><th>Diferencia</th><th>Ejecución / solicitado</th></tr></thead><tbody>';
+ for(const r of displayed){const known=Number.isFinite(r.ex),dif=known?r.n-r.ex:null,pct=known&&r.n>0?r.ex/r.n*100:null;
+  out+='<tr><td>'+esc(monthText(r.p))+'</td><td>'+esc(numeric(r.n))+'</td><td>'+(known?esc(numeric(r.ex)):'Sin dato')+'</td><td>'+(dif==null?'—':esc(numeric(dif)))+'</td><td>'+(pct==null?'—':pct.toFixed(1)+'%')+'</td></tr>';
+ }
+ out+='</tbody></table></div></details></section>';
+ return out;
+}
+
+document.querySelector('#bars').addEventListener('click',e=>{
+ const button=e.target.closest('button[data-chart-year]');
+ if(!button||!document.querySelector('#bars').contains(button))return;
+ monthlyYearSelection=monthlyYearSelection===button.dataset.chartYear?'all':button.dataset.chartYear;
+ document.querySelector('#bars').innerHTML=monthlyCompareViz(monthlyChartRows);
+ relocateMonthlyDetails();
+ document.querySelector('#bars').scrollTop=0;
+});
+
 function lineSvg(rows){
  if(!rows.length)return '<p class="empty">Sin periodos disponibles</p>';
  let W=760,H=292,L=62,R=22,T=24,B=54,w=W-L-R,h=H-T-B,vals=rows.map(r=>r.n),max=Math.max(1,...vals)*1.12;
  let xx=i=>L+(rows.length===1?w/2:i*w/(rows.length-1)),yy=n=>T+h-(n/max)*h;
  let avg=vals.reduce((a,b)=>a+b,0)/vals.length,peak=rows.reduce((a,b)=>a.n>=b.n?a:b),latest=rows.at(-1);
  let points=rows.map((r,i)=>xx(i)+','+yy(r.n)).join(' '),area=L+','+(T+h)+' '+points+' '+xx(rows.length-1)+','+(T+h);
- let out='<div class="chart-caption">Serie cronológica del requerimiento solicitado por mes.</div>';
+ let out='';
  out+='<svg viewBox="0 0 '+W+' '+H+'" role="img" aria-label="Gráfico de evolución de requerimientos" class="pro-line-svg"><defs><linearGradient id="trendArea" x1="0" x2="0" y1="0" y2="1"><stop offset="0%" stop-color="#2c7ace" stop-opacity="0.20"/><stop offset="100%" stop-color="#2c7ace" stop-opacity="0.03"/></linearGradient><filter id="trendShadow" x="-20%" y="-20%" width="140%" height="160%"><feDropShadow dx="0" dy="6" stdDeviation="6" flood-color="#1b4f8a" flood-opacity="0.10"/></filter></defs>';
  for(let i=0;i<5;i++){let y=T+h*i/4;out+='<line x1="'+L+'" y1="'+y+'" x2="'+(W-R)+'" y2="'+y+'" stroke="#e5edf6"/><text x="'+(L-8)+'" y="'+(y+4)+'" text-anchor="end" class="chart-label">'+fmt(max*(1-i/4))+'</text>'}
  rows.forEach((r,i)=>{out+='<line x1="'+xx(i)+'" y1="'+T+'" x2="'+xx(i)+'" y2="'+(T+h)+'" stroke="#f2f6fb"/>'});
@@ -306,7 +883,7 @@ function accumulatedOccupationViz(ip,mod,svc,allowedPeriods){
 function professionalOccupationChart(arr){
  if(!arr.length)return '<p class="empty">Sin datos ocupacionales para el filtro seleccionado.</p>';
  const max=Math.max(1,...arr.flatMap(r=>[r.sol||0,r.exe||0]));
- let html='<div class="viz-legend"><span><i style="background:#256fbd"></i>Horas solicitadas</span><span><i style="background:#dc903b"></i>Horas ejecutadas</span><span style="margin-left:auto">Ordenado de mayor a menor por solicitadas</span></div>';
+ let html='<div class="viz-legend"><span><i style="background:#256fbd"></i>Horas solicitadas</span><span><i style="background:#dc903b"></i>Horas ejecutadas</span></div>';
  html+='<div class="occ-chart-head"><span>Grupo ocupacional</span><span>Distribución comparativa</span><span style="text-align:right">Solicitadas / Ejecutadas</span></div>';
  for(const r of arr){const sol=r.ns?fmt(r.sol)+' h':'Sin dato',ex=r.ne?fmt(r.exe)+' h':'Sin dato';html+='<div class="occ-chart-row"><div class="occ-chart-name">'+esc(r.name)+'</div><div class="occ-chart-plot"><div class="occ-chart-band"><div class="occ-chart-fill" style="width:'+(r.ns?100*r.sol/max:0)+'%"></div></div><div class="occ-chart-band orange"><div class="occ-chart-fill" style="width:'+(r.ne?100*r.exe/max:0)+'%"></div></div></div><div class="occ-chart-values"><strong>'+sol+'</strong><strong>'+ex+'</strong></div></div>'}
  html+='<div class="occ-chart-axis"><span>0</span><span>25%</span><span>50%</span><span>75%</span><span>'+fmt(max)+' h</span></div>';
@@ -344,7 +921,21 @@ for(const modality of summaryModalities){
  modalityCards.push({title:modality+' solicitadas',number:requested.length?fmt(requestTotal)+' h':'Sin dato',detail:matchedPeriod?monthText(matchedPeriod):'Periodo seleccionado',isExec:false});
  modalityCards.push({title:modality+' ejecutadas',number:executed.known.length?fmt(executed.n)+' h':'Sin dato',detail:matchedPeriod?'Ejecución del mismo mes':executed.hasta?'Reportado hasta '+monthText(executed.hasta):'Sin ejecución registrada',isExec:true});
 }
-$('#modCards').innerHTML=modalityCards.map(c=>'<div class="card mod-card'+(c.isExec?' executed':'')+'"><div class="k">'+esc(c.title)+'</div><div class="value">'+esc(c.number)+'</div><div class="desc">'+esc(c.detail)+'</div></div>').join('');
+const executiveIcons={
+ clock:'<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 5.5v6.7l4.4 2.8"/></svg>',
+ check:'<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="m7.3 12 3.3 3.3 6.4-6.6"/></svg>',
+ people:'<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="7" r="3"/><circle cx="4.5" cy="8" r="2"/><circle cx="19.5" cy="8" r="2"/><path d="M6.5 19v-2.6c0-2.5 2.5-4.4 5.5-4.4s5.5 1.9 5.5 4.4V19zM2 18v-3.4c0-1.5 1.1-2.7 2.5-2.9M22 18v-3.4c0-1.5-1.1-2.7-2.5-2.9"/></svg>'
+};
+const requestMax=Math.max(1,...modalityCards.filter(c=>!c.isExec).map(c=>Number(String(c.number).replace(/[^\d.]/g,''))||0));
+const execMax=Math.max(1,...modalityCards.filter(c=>c.isExec).map(c=>Number(String(c.number).replace(/[^\d.]/g,''))||0));
+$('#modCards').innerHTML=modalityCards.map(c=>{
+ const rpct=c.title.startsWith('RPCT');
+ const klass=rpct?(c.isExec?'kpi-rpct-exec':'kpi-rpct-request'):(c.isExec?'kpi-he-exec':'kpi-he-request');
+ const icon=rpct?executiveIcons.people:(c.isExec?executiveIcons.check:executiveIcons.clock);
+ const n=Number(String(c.number).replace(/[^\d.]/g,''));
+ const barWidth=Number.isFinite(n)?Math.max(0,Math.min(100,n/(c.isExec?execMax:requestMax)*100)):0;
+ return '<div class="card mod-card '+klass+'"><div class="executive-header"><span class="k">'+esc(c.title)+'</span><span class="executive-icon">'+icon+'</span></div><div class="value">'+esc(c.number)+'</div><div class="desc">'+esc(c.detail)+'</div><div class="executive-progress" aria-hidden="true"><div class="executive-progress-fill" style="width:'+barWidth.toFixed(2)+'%"></div></div></div>';
+}).join('');
 let prior=matchedPeriod?addMonth(matchedPeriod,-1):null,pr=prior?store.filter(x=>x.periodoPedido===prior&&ipAllowed(x.ipress)):[],past=pr.map(r=>requireValue(r,mod,svc)).filter(x=>x!=null),prevN=past.reduce((t,n)=>t+n,0),variance=past.length&&reqKnown.length&&prevN?100*(req-prevN)/prevN:null;
 let allMonthly=periods.map(pp=>{let relevant=store.filter(x=>x.periodoPedido===pp&&ipAllowed(x.ipress));return {p:pp,n:relevant.reduce((t,r)=>t+(requireValue(r,mod,svc)||0),0),count:relevant.length}});
 let trendMonthly=(false?visiblePeriods():periods).map(pp=>{
@@ -356,7 +947,13 @@ let trendMonthly=(false?visiblePeriods():periods).map(pp=>{
 });
 $('#cards').innerHTML=[['Horas solicitadas',reqKnown.length?fmt(req)+' h':'Sin dato',''],[matchedPeriod?'Horas ejecutadas · mismo mes':'Horas ejecutadas · acumulado',ex==null?'Sin dato':fmt(ex)+' h',''],['Variación vs mes anterior',variance==null?'Sin comparación':(variance>0?'+':'')+fmt(variance)+'%',prior?monthText(prior):'Sin mes anterior'],['Cobertura del periodo',new Set(reqKnown.map(x=>x.r.ipress)).size+' / '+selectedIpCount(),'IPRESS con horas registradas; faltantes ≠ cero']].map(c=>'<div class="card"><div class="k">'+esc(c[0])+'</div><div class="v">'+esc(c[1])+'</div><div class="f">'+esc(c[2])+'</div></div>').join('');
 $('#trendTitle').textContent='Evolución mensual de requerimientos · '+mod;$('#trendChart').innerHTML=lineSvg(trendMonthly);$('#compareTitle').textContent=matchedPeriod?'Horas solicitadas vs ejecutadas · '+monthText(matchedPeriod):'Acumulado solicitado vs ejecución registrada hasta '+monthText(er.hasta);$('#compareChart').innerHTML=matchedPeriod?compareSvg(reqKnown.length?req:null,ex,matchedPeriod,er.known.length):compareSvg(reqKnown.length?req:null,ex,er.hasta,er.known.length).replace(/La relación corresponde al mismo mes de servicio:[^<]*\./,'Ejecución histórica registrada hasta '+monthText(er.hasta)+'. Las dos series tienen distinta cobertura temporal y no representan cumplimiento.');
-let rank=new Map();reqKnown.forEach(x=>rank.set(x.r.ipress,(rank.get(x.r.ipress)||0)+x.n));let rankRows=[...rank].map(([name,n])=>({name,n})).sort((a,b)=>b.n-a.n);if(selectedIpCount()===1){$('#rankingTitle').textContent='Solicitadas y ejecutadas por mes · '+ip;let monthly=allMonthly.map(x=>{let e=getExecutions(x.p,ip,mod,svc);return {...x,ex:e.known.length?e.n:null}}).sort((a,b)=>b.n-a.n||a.p.localeCompare(b.p));$('#bars').innerHTML=monthlyCompareViz(monthly)}else{$('#rankingTitle').textContent='Ranking IPRESS · '+monthText(matchedPeriod);$('#bars').innerHTML=barViz(rankRows,'#2771bf','Sin requerimientos para este mes')}
+let rank=new Map();reqKnown.forEach(x=>rank.set(x.r.ipress,(rank.get(x.r.ipress)||0)+x.n));
+let rankRows=[...rank].map(([name,n])=>({name,n})).sort((a,b)=>b.n-a.n);
+const monthly=allMonthly.filter(x=>x.count>0).map(x=>{const e=getExecutions(x.p,ip,mod,svc);return {...x,ex:e.known.length?e.n:null}}).sort((a,b)=>a.p.localeCompare(b.p));
+$('#rankingTitle').textContent='Comparativo mensual · '+ipScopeLabel();
+$('#bars').classList.add('monthly-executive');
+monthlyChartRows=monthly;
+$('#bars').innerHTML=monthlyCompareViz(monthly);
 let services=new Map();selected.forEach(r=>r.detalle.filter(d=>d.tipo==='pedido'&&d.modalidad===mod&&(!svc||normSvc(d.servicio)===svc)).forEach(d=>{let k=normSvc(d.servicio);if(k)services.set(k,(services.get(k)||0)+(d.horas||0))}));$('#serviceBars').innerHTML=barViz([...services].map(([name,n])=>({name,n})).sort((a,b)=>b.n-a.n).slice(0,20),'#d58e29','No hay detalle por servicio en este periodo');
 $('#occBars').innerHTML=matchedPeriod?occupationViz(matchedPeriod,ip,mod,svc):accumulatedOccupationViz(ip,mod,svc,periods);
 $('#findings').innerHTML='<div class="stack"><span class="chip">Requerimiento: '+esc(monthText(matchedPeriod))+'</span><span class="chip">Informe de ejecución: '+esc(matchedPeriod?monthText(addMonth(matchedPeriod,3)):'—')+'</span><span class="chip">Modalidad: '+esc(mod)+'</span></div><p class="muted">Los valores solicitados provienen del resumen de cada archivo (o detalle por servicio al aplicar ese filtro). Las horas ejecutadas se buscan en los archivos cuya ejecución reportada corresponde al mismo mes solicitado. No se comparan meses distintos.</p><p class="muted">Las variaciones del consolidado pueden estar influenciadas por IPRESS faltantes en algún periodo. Los filtros de servicio dependen de la homologación de nombres entre plantillas; verificar cifras críticas en Auditoría.</p>';
@@ -366,7 +963,7 @@ let matched=[];for(let r of store){if(!ipAllowed(r.ipress))continue;if(!periodAl
 $('#audtable').innerHTML=table(['IPRESS','Archivo','Hojas','Pedido','Servicio solicitado','Ejecución','Detalle','Estado'],store.map(x=>[esc(x.ipress),esc(x.archivo),x.hojas,x.pedido||'—',x.periodoPedido||'—',x.ejecucion||'—',x.detalle.length,(x.pedido&&x.ejecucion&&x.detalle.length)?'<span class="tag">Leído</span>':'<span class="tag bad">Revisar campos</span>']));
 }
 function changeMonth(delta){let periods=allPeriods(),p=singlePeriod()||periods.at(-1),at=periods.indexOf(p),n=Math.max(0,Math.min(periods.length-1,at+delta));periodSelected=new Set([periods[n]]);render()}
-$('#prevMonth').onclick=()=>changeMonth(-1);$('#nextMonth').onclick=()=>changeMonth(1);
+
 for(let b of document.querySelectorAll('.tab'))b.onclick=()=>{if(!currentRole||(currentRole!=='admin'&&!viewerViews.has(b.dataset.view)))return;document.querySelectorAll('.tab').forEach(x=>x.classList.toggle('active',x===b));document.querySelectorAll('.section').forEach(x=>x.classList.toggle('show',x.id===b.dataset.view));$('#dashboardTop').classList.toggle('hidden',b.dataset.view!=='dashboard');$('#headerPeriod').classList.toggle('hidden',!['dashboard','anual'].includes(b.dataset.view))};['filterMod','filterService','filterView'].forEach(id=>$('#'+id).addEventListener('change',render));
 function download(name,text,type){let u=URL.createObjectURL(new Blob([text],{type}));let a=document.createElement('a');a.href=u;a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(u),1500)}
 $('#export').onclick=()=>{let rows=[['IPRESS','Archivo','Presentación','Periodo solicitado','Periodo ejecución','Modalidad','Cantidad','Unidad','Valorización S/']];selection().forEach(x=>x.resumen.forEach(r=>rows.push([x.ipress,x.archivo,x.pedido,x.periodoPedido,x.ejecucion,r.modalidad,r.cantidad,r.unidad,r.costo])));download('SIGHE_matriz_requerimientos.csv','\ufeff'+rows.map(r=>r.map(v=>'"'+String(v??'').replace(/"/g,'""')+'"').join(';')).join('\r\n'),'text/csv;charset=utf-8')};
